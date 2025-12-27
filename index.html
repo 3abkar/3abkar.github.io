@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>CleanTok - تحميل TikTok بدون علامة مائية</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f2f2f2;
+  text-align: center;
+  padding: 40px;
+}
+.box {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  display: inline-block;
+  max-width: 500px;
+}
+input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  margin-top: 10px;
+}
+button {
+  margin-top: 15px;
+  padding: 12px 25px;
+  font-size: 16px;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+  <h1>CleanTok</h1>
+<p>تحميل فيديوهات TikTok بدون علامة مائية بسهولة مجاني</p>
+
+  <input id="url" placeholder="https://www.tiktok.com/..." />
+  <button onclick="go()">تحميل الآن</button>
+</div>
+
+<script>
+function go(){
+  let url = document.getElementById("url").value;
+  if(!url){
+    alert("من فضلك ضع رابط الفيديو");
+    return;
+  }
+  window.open("https://ssstik.io/ar?url=" + encodeURIComponent(url), "_blank");
+}
+</script>
+
+</body>
+</html>

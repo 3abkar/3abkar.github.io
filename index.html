@@ -2,120 +2,78 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
-<title>CleanTok - تحميل TikTok بدون علامة مائية</title>
-<meta name="description" content="CleanTok أداة مجانية لتحميل فيديوهات TikTok بدون علامة مائية بسرعة وسهولة." />
-<meta name="keywords" content="تحميل تيك توك بدون علامة, TikTok بدون شعار, تحميل فيديو تيك توك" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CleanTok</title>
 <style>
 body {
-  font-family: 'Segoe UI', Tahoma, sans-serif;
-  background: linear-gradient(135deg, #1d2671, #c33764);
-  min-height: 100vh;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: linear-gradient(120deg,#3a1c71,#d76d77,#ffaf7b);
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:Arial;
 }
-
 .box {
-  background: #fff;
-  padding: 35px;
-  border-radius: 18px;
-  width: 100%;
-  max-width: 420px;
-  text-align: center;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  background:#fff;
+  padding:25px;
+  width:320px;
+  border-radius:15px;
+  text-align:center;
 }
-
-h1 {
-  margin: 0;
-  font-size: 32px;
-  color: #1d2671;
-}
-
-p {
-  color: #555;
-  font-size: 15px;
-  margin-top: 10px;
-}
-
 input {
-  width: 100%;
-  padding: 14px;
-  margin-top: 20px;
-  font-size: 15px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  outline: none;
+  width:100%;
+  padding:10px;
+  margin:10px 0;
 }
-
-input:focus {
-  border-color: #c33764;
-}
-
 button {
-  width: 100%;
-  margin-top: 18px;
-  padding: 14px;
-  font-size: 16px;
-  border-radius: 10px;
-  border: none;
-  background: #c33764;
-  color: #fff;
-  cursor: pointer;
-  transition: 0.3s;
+  width:100%;
+  padding:10px;
+  margin-top:10px;
+  border:none;
+  background:#d63d6c;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+  border-radius:8px;
 }
-
-button:hover {
-  background: #a52b55;
+#downloads {
+  display:none;
 }
 </style>
 </head>
+
 <body>
-
 <div class="box">
-  <h1>CleanTok</h1>
-<p>تحميل فيديوهات TikTok بدون علامة مائية بسهولة مجاني</p>
+  <h2>CleanTok</h2>
+  <p>تحميل فيديوهات تيك توك بدون علامة مائية</p>
 
-  <input id="tiktokUrl" placeholder="https://www.tiktok.com/>
+  <input id="url" placeholder="ضع رابط TikTok هنا">
+  <button onclick="analyze()">تحليل الرابط</button>
 
-<select id="quality" style="width:100%;padding:10px;margin-bottom:10px;display:none;">
-  <option value="hd">HD بدون علامة مائية</option>
-  <option value="sd">SD بدون علامة مائية</option>
-</select>
-
-<button onclick="analyze()">تحليل الرابط</button>
-
-<a id="downloadBtn" style="display:none;margin-top:10px;display:block;text-decoration:none;">
-  <button>تحميل الفيديو</button>
-</a>
-
+  <div id="downloads">
+    <button onclick="download('hd')">تحميل HD</button>
+    <button onclick="download('sd')">تحميل SD</button>
+  </div>
 </div>
 
 <script>
-function go(){
-  let url = document.getElementById("url").value;
-  if(!url){
-    alert("من فضلك ضع رابط الفيديو");
+function analyze(){
+  const url = document.getElementById("url").value;
+  if(!url.includes("tiktok")){
+    alert("رابط غير صالح");
     return;
   }
-  window.open("https://ssstik.io/ar?url=" + encodeURIComponent(url), "_blank");
+  document.getElementById("downloads").style.display="block";
+}
+
+function download(q){
+  const url = document.getElementById("url").value;
+
+  // API مؤقت (مش ssstiktok)
+  window.open(
+    `https://api.tikmate.app/api/lookup?url=${encodeURIComponent(url)}`,
+    "_blank"
+  );
 }
 </script>
-  <script>
-function analyze() {
-  const url = document.getElementById("tiktokUrl").value;
-  if (!url.includes("tiktok.com")) {
-    alert("ضع رابط تيك توك صحيح");
-    return;
-  }
-
-  document.getElementById("quality").style.display = "block";
-  document.getElementById("downloadBtn").style.display = "block";
-
-  document.getElementById("downloadBtn").href = "#";
-}
-</script>
-
 </body>
 </html>

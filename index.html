@@ -77,8 +77,19 @@ button:hover {
   <h1>CleanTok</h1>
 <p>تحميل فيديوهات TikTok بدون علامة مائية بسهولة مجاني</p>
 
-  <input id="url" placeholder="https://www.tiktok.com/..." />
-  <button onclick="go()">تحميل الآن</button>
+  <input id="tiktokUrl" placeholder="https://www.tiktok.com/..." />
+
+<select id="quality" style="width:100%;padding:10px;margin-bottom:10px;display:none;">
+  <option value="hd">HD بدون علامة مائية</option>
+  <option value="sd">SD بدون علامة مائية</option>
+</select>
+
+<button onclick="analyze()">تحليل الرابط</button>
+
+<a id="downloadBtn" style="display:none;margin-top:10px;display:block;text-decoration:none;">
+  <button>تحميل الفيديو</button>
+</a>
+
 </div>
 
 <script>
@@ -89,6 +100,20 @@ function go(){
     return;
   }
   window.open("https://ssstik.io/ar?url=" + encodeURIComponent(url), "_blank");
+}
+</script>
+  <script>
+function analyze() {
+  const url = document.getElementById("tiktokUrl").value;
+  if (!url.includes("tiktok.com")) {
+    alert("ضع رابط تيك توك صحيح");
+    return;
+  }
+
+  document.getElementById("quality").style.display = "block";
+  document.getElementById("downloadBtn").style.display = "block";
+
+  document.getElementById("downloadBtn").href = "#";
 }
 </script>
 
